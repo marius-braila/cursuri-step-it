@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>While</title>
+</head>
+<body>
+    
+    <script type="text/javascript">
+
+        let i = 0;
+
+        while (i<10) {
+            console.log("ok");
+            // console.log(i);
+            i++;
+        }
+
+        const masini = ['Audi', 'BMW', 'Dacia', "Renault"];
+
+        let j = 0;
+
+        while (j < masini.length) {
+            console.log(masini[j]);
+            j++;
+        }
+
+        let k = masini.length - 1; 
+
+        while (k >= 0) {
+            console.log(masini[k]);
+            k--;
+        }
+
+        // afisare cifere ale unui numar in ordine inversa
+
+        // let nr = parseInt(prompt("Dati numarul:"));
+
+        // while (nr != 0) {
+        //     let uc = nr % 10; // prin restul impartirii nr la 10 salvez ultima cifra.
+        //     nr = parseInt(nr / 10); // prin impartirea la 10 tai ultima cifra din numar.
+        //     console.log(uc);
+             
+        //     // 234 / 10 = 23 rest 4 
+        //     // 23 / 10 = 2 rest 3
+        //     // 2 / 10 = 0 rest 2
+        // }
+
+        // cereri cifre de la tastatura pana cand userul intruduce cifra 2
+    
+        console.clear();
+
+        // while(true) {
+        //     let n = parseInt(prompt("Introduceti cifra 2:"));
+
+        //     if (n == 2) {
+        //         break; // opreste iteratia si eise din bucla
+        //     } else {
+        //         console.log(n);
+        //     }
+        // } 
+
+        // afiseaza doar numerele pare de la 1 la 10
+
+        let z = 0;
+
+        while(z <= 10) {
+            z++;
+
+            if (z%2 != 0) {
+               continue; // nu mai executa ce este sub aceasta conditie si trece mai departe.
+            }
+
+            console.log(z);
+        }
+
+
+        console.clear();
+        // luati un nr de la tastatura. afisati toate numele de la acel numar pana la 0.
+
+        let x = parseInt(prompt("Dati x:"));
+
+        do {
+            console.log(x);
+            x--;
+        } while(x>=0); 
+
+        // Se citeste un numar de maxim 9 cifre de la tastura.
+        // Afisati:
+        // - cifra minima
+        // - cifra maxima
+        // - produsul cifrelor impare
+        // - suma cifrelor pare
+        // - numarul cifrelor mai mari decat 4
+        
+        
+        // ex: 5631984
+        // min: 1, max: 9,  5x3x1x9=135, 6+8+4=18, 5,6,9,8 = 4
+
+       let n = parseInt(prompt("Dati n:"));
+       let min = 9, max = 0;
+       let prod = 1;
+       let sum = 0;
+       let num = 0;
+       let position = 0;
+
+       while (n!=0) {
+            // iau ultima cifra a numarului;
+            let uc = n % 10;
+
+            // la fiecare iteratie, in uc am ultima cifera, mereu.
+            // Daca aceasta este mai mica decat minimul definit initial ca fiind 9 (linia: 102)
+            // minimul devine de fiecare data acea cifra care indeplineste conditia.
+            if (uc < min) {
+                min = uc;
+            }
+
+            if (uc > max) {
+                max = uc;
+            }
+
+            // Daca restul impartii la 2 nu este egal cu 0 atunci nr e impar.
+            // doar daca e impar in inmultesc de fiecare cu variabila prod si valoarea ei anterioara.
+            if (uc % 2 != 0) {
+                prod = prod * uc; // prod *= uc;
+            } else {
+                sum = sum + uc; // sum += uc;
+            }
+
+
+            // daca cifra este mai mare decat 4, o numar de fiecare data
+            // incrementand valoarea variabilei num, care initial este 0.
+            if (uc > 4) {
+                num++;
+            }
+
+            // tai mereu ultima cifra din numar pana cand aceasta devine 0 si iese din while;
+            n = parseInt(n/10);
+       }
+
+       // n=35732, min=9, max=0; prod=1; sum=0; num=0;
+       // 1: uc=2; min=2, max=2; n=3573; prod=1; sum=0+2; num=0;
+       // 2: uc=3; min=2, max=3; n=357; prod = 3*1; sum=2; num=0;
+       // 3: uc=7; min=2; max=7; n=35; prod = 7*3*1; sum=2; num=1;
+       // 4: uc=5; min=2; max=7; n=3;  prod = 5*7*3*1; sum=2; num=2;
+       // 5: uc=3; min=2; max=7; n=0;  prod = 3*5*7*3*1; sum=2; num=2;
+
+       // min:2; max:7; prod = 315; sum=2; >4: 2;
+
+       console.log("Min:" + min);
+       console.log("Max:" + max);
+       console.log('Prod:' + prod);
+       console.log("Sum:" + sum);
+       console.log(">4:" + num);
+
+    </script>
+</body>
+</html>

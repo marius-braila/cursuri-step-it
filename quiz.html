@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quiz</title>
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+ 
+      #quiz-container {
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        padding: 10px;
+        max-width: 500px;
+        width: 90%;
+      }
+ 
+      button {
+        background-color: #3498db;
+        color: #fff;
+        border: none;
+        padding: 10px;
+        border-radius: 5px;
+      }
+ 
+      #question {
+        font-size: 25px;
+        margin-bottom: 10px;
+      }
+ 
+      #options {
+        list-style: none;
+      }
+ 
+      #options li {
+        font-size: 20px;
+      }
+ 
+      .hidden {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="quiz-container">
+      <div id="quiz">
+        <div id="question"></div>
+ 
+        <ul id="options"></ul>
+        <button id="next-btn">Next</button>
+        <button class="hidden" id="restart">Restart</button>
+        <div class="hidden" id="score"></div>
+      </div>
+    </div>
+ 
+    <script type="text/javascript">
+      const quizData = [
+        {
+          question: "What is the capital of Italy?",
+          options: ["Berlin", "Roma", "Paris", "Budapesta"],
+          correct: 1,
+        },
+ 
+        {
+          question: "What is the capital of Spain?",
+          options: ["Berlin", "Roma", "Paris", "Madrid"],
+          correct: 3,
+        },
+ 
+        {
+          question: "What is the capital of Romania?",
+          options: ["Berlin", "Roma", "Bucuresti", "Budapesta"],
+          correct: 2,
+        },
+      ];
+ 
+      let currentQuestionIndex = 0;
+      let score = 0;
+ 
+      const questionEl = document.getElementById("question");
+      const optionsEl = document.getElementById("options");
+      const nextBtn = document.getElementById("next-btn");
+      const restartBtn = document.getElementById("restart");
+      const scoreEl = document.getElementById("score");
+ 
+      function loadQuestion() {
+        const currentQuestion = quizData[currentQuestionIndex];
+        optionsEl.innerHTML = ``;
+        const currentNumber = `${currentQuestionIndex + 1} / ${quizData.length} `;
+        questionEl.innerHTML = currentNumber + currentQuestion.question;
+        currentQuestion.options.forEach((oras, cheie) => {
+          const li = document.createElement("li");
+          li.innerHTML = `<label><input type="radio" name="option" value="${cheie}">${oras}</label>`;
+          optionsEl.appendChild(li);
+        });
+      }
+
+      function checkAnswer() {
+        const selectedOpt = document.querySelector(
+          'input[name="option"]:checked'
+        );
+ 
+        if (!selectedOpt) {
+          alert("Please select an option");
+          return false;
+        }
+        let ansIndex = parseInt(selectedOpt.value);
+        if (ansIndex == quizData[currentQuestionIndex].correct) {
+          score++;
+        }
+        currentQuestionIndex++;
+        if (currentQuestionIndex < quizData.length) {
+          loadQuestion();
+        } else {
+          showScore();
+        }
+      }
+
+      function showScore(){
+        questionEl.classList.add('hidden');
+        optionsEl.classList.add('hidden');
+        nextBtn.classList.add('hidden');
+
+        restartBtn.classList.remove('hidden');
+        scoreEl.classList.remove('hidden');
+        scoreEl.innerHTML = `Your score is ${score}/${quizData.length}`
+      }
+
+      function restartQuiz() {
+        currentQuestionIndex = 0;
+        score = 0;
+        restartBtn.classList.add('hidden');
+        scoreEl.classList.add('hidden');
+
+        questionEl.classList.remove('hidden');
+        optionsEl.classList.remove('hidden');
+        nextBtn.classList.remove('hidden');
+        loadQuestion();
+      }
+      
+ 
+      loadQuestion();
+
+      nextBtn.addEventListener("click", () => {
+        checkAnswer();
+      });
+
+      restartBtn.addEventListener("click", () => {
+        restartQuiz();
+      });
+    </script>
+  </body>
+</html>

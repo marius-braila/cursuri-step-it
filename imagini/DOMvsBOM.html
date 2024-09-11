@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOMvsBOM</title>
+</head>
+<body>
+    <p id="test"></p>
+    <button onclick="window.open()">open</button>
+    <button onclick="window.history.back()">back</button>
+    <button onclick="setTimeout(test, 3000)">test</button>
+    <div  id="cub"  style="width: 20px; height: 20px; background-color: red;"></div>
+
+    <p id="time"></p>
+
+    <script type="text/javascript">
+        window.document.getElementById('test').innerHTML = "Test 2";
+        let w = window.innerWidth;
+        let h = window.innerHeight;
+        
+
+        console.log(w);
+        console.log(h);
+
+        console.log(window.location);
+
+         //window.alert('ok');
+
+         function test() {
+            alert('ok');
+         }
+
+         let clock = setInterval(timer , 1000);
+
+         function timer(){
+            const date = new Date();
+            document.getElementById('time').innerHTML = date.toLocaleString();
+         }
+
+         let x = 10
+         function move() {
+            x += 10
+            document.getElementById('cub').style.marginLeft = `${x}px`;
+         }
+
+         console.log(document.cookie);
+         document.cookie = "lang=ro, user=john " ;
+
+        // setInterval(move, 2000);
+    </script>  
+</body>
+</html>

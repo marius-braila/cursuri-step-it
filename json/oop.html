@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OOP</title>
+</head>
+<body>
+
+
+    <script type="text/javascript">
+
+        class Rectangle {
+            constructor(w , h) {
+                this.width = w;
+                this.height = h;
+            }
+
+            get info() {
+                return "Salut, eu sunt dreptunghi, Am latimea de " + this.width + " si inaltimea de " + this.height;       
+            }
+
+            get area() {
+                return this.calculArea();
+            }
+
+            calculArea() {
+                if(this.width > 0 && this.height > 0){
+                    return this.width * this.height
+                }else {
+                    return false;
+                }
+
+            }
+
+        }
+
+        let dreptunghi1 = new Rectangle(10 , 5);
+        console.log(dreptunghi1);
+
+        let dreptunghi2 = new Rectangle(7, 2);
+        console.log(dreptunghi2);
+
+        //Principii OOP
+        
+        //1. Encapsulation (incapsulare)
+        // Impachetarea datelor(atribute si metode) intr o singura structura
+        //Datele si metodele pot fii restrictionate si nu pot fii accesate direct
+
+        class Persoana {
+            constructor(nume , varsta) {
+                this.nume = nume;
+                this.varsta = varsta;
+            }
+
+            //Metoda publica
+            saluta() {
+                console.log(`Buna eu sunt ${this.nume} si am ${this.varsta} ani!`);
+            }
+
+            //Getter
+            get obtineVarsta() {
+                return this.varsta;
+            }
+
+            //setter
+             seteazaVarsta(varstaNoua) {
+                if(varstaNoua > 0) {
+                    this.varsta = parseInt(varstaNoua)
+                }else {
+                    console.log('Varsta Invalida')
+                }
+            }
+        }
+
+        let person1 = new Persoana("Alice", 35);
+       // person1.saluta();
+        console.log(person1);
+       // person1.seteazaVarsta(38);
+       // person1.saluta();
+
+
+        //2. Inheritance (Mostenirea) 
+        //este un mecanism prin care o clasa mosteneste proprietatiile si metodele altei clase
+        //aceasta permite reutilizarea codului si crearea de relatii ierarhice intre clase.
+        //Noua clasa se numeste subclasa sau clasa derivata.
+        //Clasa initiala se numeste clasa de baza sau superclasa.
+
+        class Animal {
+            constructor(nume) {
+                this.nume = nume;
+            }
+
+            vorbeste() {
+                console.log(`${this.nume} scoate un sunet!`)
+            }
+        }
+
+        class Dog extends Animal {  
+            constructor (nume , rasa) {
+                super(nume); //Apeleaza atributul nume din clasa parinte(Animal);
+                this.rasa = rasa;
+            }
+
+            vorbeste() {
+                console.log(`${this.nume} latra!`) // this.nume este initializat in clasa parinte
+            }
+        }
+        
+        let animal = new Animal("Azorel");
+       // animal.vorbeste();
+
+        let dog = new Dog('Buddy' , 'Bulldog');
+       // dog.vorbeste();
+
+        //3. Polymorphism (Polimorfism)
+        //Permite suprascrierea metodelor dintr o clasa superioara intr-o subclasa
+        //pentru a folosi o implementare specifica.
+
+        class Pasare {
+            zboara() {
+                console.log('pasarea zboara!')
+     
+            }
+        }
+
+        class Vrabie extends Pasare {
+            zboara(){
+                console.log("Vrabia Zboara"); // suprascriu prin polimorfism clasa din parinte
+            }
+        }
+
+        class Vultur extends Pasare {
+          //  zboara() {
+            //    console.log("Vulturul se inalta");
+          //  }
+        }
+
+        let pasari = [new Vrabie(), new Vultur()]; // in clasa vultur nu am functia zboara asadar va fi apelata functia zboara din clasa parinte(Pasare)
+        pasari.forEach(pasare => {
+            pasare.zboara();
+        });
+
+        //4. Abstractizare
+        //Ascunde detalii complexe in functii specifice si arata doar caracteristicile esentiale
+        //reduce complexitatea si creste uzabilitatea functiei deoarece userul interactioneaza doar cu metode simple
+
+
+        class ExpresorCafea {
+
+            preparaCafea(){
+                fierbeApa();
+                macina();
+                toarna();
+                clateste();
+            }
+
+            fierbeApa(){
+                //Are logica de fierbere
+            }
+
+            macina(){
+                //toata logica de macinare
+            }
+
+            //....
+
+        }
+
+        // -------------- Public & Privat --------------
+        //1. folosind #
+        class Person {
+            #name; //Atribute private - definite cu # in fata numelui
+            #age;
+            
+            constructor(name, age){
+                this.#name = name;
+                this.#age = age;
+            }
+
+            //Metoda publica
+            greet() {
+                console.log(`Buna eu sunt ${this.#name} si am ${this.#age} ani`)
+            }
+
+            //Metoda privata
+            #getAge(){
+                return this.#age;
+            }
+
+            //Metoda publica
+            showAGE(){
+                console.log(`Eu am varsta de ${this.#getAge()} ani`)
+            }
+
+        }
+
+        let user1 = new Person("John", 23);
+        user1.greet();
+        user1.showAGE();
+
+        ///console.log(user1.#name);
+       // console.log(user1.#getAge());
+
+
+    </script>
+</body>
+</html> 

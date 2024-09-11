@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+
+        .slider {
+            position: relative;
+            width: 80%;
+            max-width: 600px;
+            overflow: hidden;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            background-color: #fff;
+        }
+
+        .slides {
+            display: flex;
+            transition: trasform 0.5s ease-in-out;
+        }
+
+        .slide {
+            min-width: 100%;
+            box-sizing: border-box;
+            border-bottom: 2px solid #ddd;
+        }
+
+        .slide:last-child {
+            border-bottom: none;
+        }
+
+        .slide img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        button {
+            position: absolute;
+            top: 50%;
+            background-color: rgba(0, 0, 0 , 0.5);
+            color: #fff;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            transform: translateX(-50%);
+        }
+
+        button:hover {
+            background-color: rgba(0, 0, 0 , 0.8);
+        }
+
+        .prev {
+            left: 10px;
+        }
+
+        .next {
+            right: 10px;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="slider">
+        <div class="slides">
+            <div class="slide">
+                <img src="https://images.pexels.com/photos/346529/pexels-photo-346529.jpeg" alt="image 1">
+            </div>
+            <div class="slide">
+                <img src="https://images.pexels.com/photos/147411/italy-mountains-dawn-daybreak-147411.jpeg" alt="image 2">
+            </div>
+            <div class="slide">
+                <img src="https://images.pexels.com/photos/709552/pexels-photo-709552.jpeg" alt="image 3">
+            </div>
+        </div>
+        <button class="prev" onclick="prevSlide()">&#60;</button>
+        <button class="next" onclick="nextSlide()">&#62;</button>
+        <div class="dots">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+        </div>
+    </div>
+
+
+    <script type="text/javascript">
+        let currentSlide = 0;
+
+        function showSlide(index) {
+            // iau toate elem cu clasa .slide (div urile cu poze)
+            const slides = document.querySelectorAll('.slide')
+
+            // numar cate div uri cu poze am in total.
+            const totalSlides = slides.length;
+
+            // suprascriu variabila globale cu indexul pe care vr sa ajung.
+            
+
+           // daca am depasit nr total de slide uri resetez curent index la 0 (prima poza)
+            if(index >= totalSlides) { 
+                currentSlide = 0;
+                // daca sunt pe prima poza si dau prev resetez curent index la ultima poza (total - 1 = ultima positie)
+            }else if (index < 0){
+                currentSlide= totalSlides - 1; // daca nu sunt pe exceptii afisez index ul pe care am dat click
+            }else {
+                currentSlide = index;
+            }
+
+            const slidesContainer = document.querySelector('.slides');
+            slidesContainer.style.transform = `translateX(-${currentSlide * 100}%)`; //muta poza in focus cu 100% * indexul pe care vreau sa ajung.
+            console.log(slides);
+            console.log(currentSlide);
+            console.log(totalSlides);
+        }
+
+        function nextSlide() {
+            showSlide(currentSlide + 1); // trece la side ul urmator
+        }
+
+        function prevSlide() { 
+            showSlide(currentSlide - 1); // trece la slide ul anterior 
+        }
+
+    </script>
+</body>
+
+</html>

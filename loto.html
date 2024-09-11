@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="generateLoto(6 , 49, '6of49')">Loto 6/49</button>
+    <button onclick="generateLoto(5, 40 , '5of40')">Loto 5/40</button>
+    <ul id="6of49" ></ul>  
+    <ul id="5of40" ></ul>  
+      
+    <script type="text/javascript">
+
+        // trebuie sa facem ca nr sa nu se repete cu array;
+        function generateLoto(param1 ,  param2, parents) {
+           let parent = document.getElementById(parents);
+
+            let nrArray = [];
+
+            parent.innerHTML = '';
+
+            for (let i=1; i<= param1; i++) {
+                let nr = Math.floor(Math.random() * 100);
+ 
+                while(nr > param2 || nr == 0) {
+                    nr = Math.floor(Math.random() * 100);
+                }
+
+                nrArray[i] = nr;
+ 
+           }
+
+                // let li = document.createElement('li');
+                // li.innerHTML = nr;
+                // parent.appendChild(li);
+
+
+        }
+    </script>
+</body>
+</html>

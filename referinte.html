@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Referinte</title>
+    <!-- Prin tagul link,legam fisierul main.css la fisierul referinte.html -->
+    <!-- css/ - reprezinta folderul in care se afla -->
+    <!-- rel - reprezinta atributul prin care declar tipul fisierului linkuit -->
+    <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body>
+    <!-- Clasa este definita in fisierul main.css -->
+    <h1 class="bigText">Hello</h1>
+    <p class="blueColor redBigColor">Exista heading-uri de la h1 la h6. Ele se afiseaza in functie de marime,H1 fiind
+        cel mai mare</p>
+        <p>Tagul p este folosit pentru afisarea textului normal in paragrafe</p>
+       
+        <p>Putem avea texte <strong>bold</strong> <b>bold2</b>, <em>italic</em>, <i>italic2</i> sau <u>subliniate</u></p>
+        <!-- pot targeta un element prin id, acesta trebuie sa fie unic la nivel de pagina -->
+        <p id="elem4">Mai corect ar fii ca <span>bold</span> <span>bold2</span> sa fie definit asa</p>
+    
+        <h2>Taguri fara continul(br,hr)</h2>
+        <!-- br adauga enter-uri -->
+        <p>Ceva<br><br><br>Altceva</p>
+        <!-- hr trage o linie orizontala -->
+        <hr>
+        <h3>Liste</h3>
+        <ul>
+            <li>paine</li>
+            <li>lapte</li>
+            <li>oo</li>
+        </ul>
+        <ol>
+            <li>Primul</li>
+            <li>Al Doilea</li>
+            <li>Al treilea</li>
+
+        </ol>
+
+        <h4>Tabele</h4>
+
+        <table>
+            <tr>
+                <td>Nr.</td>
+                <td>Nume</td>
+                <td>Nota</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>Popescu</td>
+                <td>10</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>Popescu</td>
+                <td>10</td>
+            </tr>
+        </table>
+        
+        <h5>Link-uri</h5>
+        <a href="#">Tare rau</a>
+
+        <h6>Imagini</h6>
+<!-- pot targeta in proiect o imagine externa. Atentie , daca se sterge imaginea dispare si din proiect -->
+        <!-- <img src="https://s13emagst.akamaized.net/layout/ro/images/db//115/171865.jpg" alt="milan" width="200" height="400"> -->
+        <!-- pot targeeta o imagine din proiect, in cazul de mai jos din folderul imagini -->
+        <!-- pot stabili latimea sau inaltimea in pixeli sau in procente -->
+        <!-- pot da width si height atat pe element cat si in css -->
+        <!-- <img src="imagini/iarna.jpg" alt="iarna" width="200px" height="100px">         -->
+        <!-- <img src="imagini/iarna.jpg" alt="iarna" width="30%" height="100px">    -->
+        
+        <!-- <a class="linkImg" href="https://www.google.com" target="_blank">
+            <img src="imagini/iarna.jpg" alt="" width="50%">
+        </a> -->
+
+        <div class="yellowBg bordered">
+            Hello
+        </div>
+
+        <div class="redBg bordered">
+           Hello
+        </div>
+
+       <div class="coolBg">
+           Hello
+       </div>
+
+
+     
+    </body>
+
+</html>

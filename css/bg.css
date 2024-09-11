@@ -1,0 +1,25 @@
+.greenBg {
+   /* varianta cu nume de culoare */
+    background-color: green;
+   /* varianta hex */
+    background-color: #00ff00;
+   /* varianta cu functie rgb */
+   background-color: rgb(0, 255, 0);
+   /* varianta cu hsl - hue, saturation, lightness + opacity */
+   background-color: hsl(120, 100%, 50%);
+   /* regleaza transparenta culorii: 1 - opac 0 - transparent. Se aplica pe tot elementul */
+   opacity: 1;
+} 
+
+.imgBg {
+   background-image: url("../imagini/iarna.jpg");
+   background-color: gray;
+   /* putem decide daca bg ul se repeta sau nu
+   Putem decide axa pe care se repeta,  ox sau oy */
+   background-repeat: no-repeat;
+/* Putem decide de unde pleaca imaginea de bg in raport cu elementul */
+   background-position: top left;
+  /* pot controla daca bg-ul permite scroll sau ramane fix atunci cand dau scroll */
+   background-attachment: fixed;
+   height: 1200px; ;
+}

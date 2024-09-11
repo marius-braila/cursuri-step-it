@@ -1,0 +1,106 @@
+/* O clasa de defineste prin adaugarea unui punct(.) in fata numelui acestuia 
+  Numele clasei nu trebuie sa contina spatii.
+  Clasele sunt case-sensitive: clasa bigText este diferita de clasa bigtext
+  Regula de definire poate fii camelCase sau snake_case
+*/
+
+.bigText {
+    /* Cheia font-size defineste marimea fontului,valoarea 40 px reprezentand valoarea */
+    font-size: 40px;
+}
+
+.blueColor {
+    color: blue;
+}
+
+.redBigColor {
+    color: #ff0000;
+    font-size:  25px;
+}
+
+/* un id se defineste prin adaugarea # in fata numelui */
+
+#elem4 {
+    background-color: yellow;
+} 
+
+/* pot targeta un element ca find copilul parintelui targetat. Citesc copilul de tip span 
+cu parintele cu id= "elem4"
+Parintele poate fii targetat astfel: ca element ,ca id sau cu ajutorul unei clase:
+h1 > span
+.clasa > span
+#id > span
+#id > p > span */
+
+#elem4 > span {
+    font-weight: bold;
+}
+
+/* putem definii mai multe taguri sau id sau clase la un loc */
+/* 1px-grosimea liniei solid- tipul liniei */
+table, td {
+    border: 1px solid green;
+    /* Uneste bordurile */
+    border-collapse: collapse;
+}
+
+td {
+    border-top: none;
+    border-bottom: none;
+}
+
+/* selectorul hover aplica comenzile doar atunci cand sunt cu mouse ul peste element */
+
+a:hover {
+    font-size: 30px;
+}
+
+/* a.linkImg se refera doar la a urile cu clasa linkImg. Daca aplic clasa linkImg pe alt tip de element nu va fi luata in considerare */
+
+/* pentru structura div1 -> p -> div -> p 
+   Daca in css definesc div1 -> p  se vor aplica comenzile pe totii copii de tip p a lui div1
+ Daca definesc div1 > p  se vor aplica comenzile doar pe copilul primar lui div1
+   */
+
+a.linkImg > img:hover {
+  filter: grayscale();
+}
+
+.yellowBg {
+    /* pune culoarea pe fuldalul-ul elementului */
+    background-color: yellow;
+
+    /* pot declara individual fiecare latura  */
+    padding: 15px 25px 10px 20px;
+
+  /* pot defini in pading 4 valori dupa regula trbl sau Tb Lr */
+
+    /* margin-top: 10px;
+    margin-right: 15px;
+    margin-bottom: 10px;
+    margin-left: 15px;*/
+
+    margin: 10px 15px;
+
+/* aceleasi reguli sunt la margini */
+/* ordinea este element padding border margin */
+
+    /* margin: 0 0 0 15px; */
+} 
+.redBg {
+    background-color: red;
+    padding: 5px;
+    margin: 10px;
+}
+
+.bordered {
+    border :1px solid #000000;
+    border-bottom-width: 5px;
+    border-bottom-color:  blue ;
+}
+
+.coolBg {
+    /* pot pune un fundal de tip imagine */
+    background-image: url("../imagini/iarna.jpg");
+    height: 854px;
+}

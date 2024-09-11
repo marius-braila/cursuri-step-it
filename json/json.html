@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON</title>
+</head>
+<body>
+
+
+    <script type="text/javascript">
+        
+        let numbers = [1, 2 ,3, 4, 5, 6];
+
+        let product = {
+            id: 101,
+            name: "produs 1",
+            description:"Descriere produs",
+            price: 120,
+            currency: "RON",
+            qnt: 0 ,
+            isDownloadable: false,
+            manfacturer: {
+                name: "Adidas",
+                country:"Germany"
+            }
+        }
+        
+
+        let products = {
+            
+            id: 101,
+            name: "produs 1",
+            description:"Descriere produs",
+            price: 120,
+            currency: "RON",
+            qnt: 100,
+            isDownloadable: false,
+            manfacturer: {
+                name: "Adidas",
+                country:"Germany"
+            }
+
+        }
+
+        let student = {
+            firstName: "John",
+            lastName: "Dow",
+            marks: {
+                romana: [10 , 8, 7],
+                mate: [10 , 8.5, 5]
+            },
+            bursa: false,
+            an: 2
+        }
+
+        const myJson = JSON.stringify(student);
+        console.log(myJson);
+        const recieved = JSON.parse(myJson);
+
+        
+
+        const productJSON = JSON.stringify(product, checkStock);
+        function checkStock(key , value) {
+            if(key == "qnt" && value <= 0) {
+                return null;
+            }else {
+                return value;
+            }
+        } 
+
+        console.log(productJSON);
+    </script>
+</body>
+</html>

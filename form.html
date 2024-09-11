@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="#">
+        <label for="a">A
+            <input type="text" name="a" id="a">
+        </label>
+        <br>
+        <label for="b">B
+            <input type="text" name="b" id="b">
+        </label>
+        <br>
+        <label for="c">C
+            <input type="text" name="c" id="c">
+        </label>
+        <br>
+        <a id="check">Vezi tip triunghi</a>
+    </form>
+    
+    <p id="rezultat"></p>
+
+    <script type="text/javascript">
+
+            
+        function checkTriange(a , b, c) {
+
+            let result = document.getElementById('rezultat');
+            let htmlResult = '';
+
+            if(isNan(a) || isNan(b) || isNan(c) ) {
+                htmlResult = 'Introdu un numar' ;
+                displayResult(htmlResult);
+                return false;
+            }
+        
+            if(a <= 0 || b <= 0 || c <= 0) {
+                htmlResult = 'Laturi invalide' ;
+                displayResult(htmlResult);
+                return false;
+            }
+
+            if(a == b && a == c) {
+                htmlResult = 'Triunghi echilateral';
+            }else if( (a == b && a!= c) || (b == c && b !== a) || (a == c && a !== b)){
+                htmlResult = 'Triunghi isoscel';
+            }else if( (a**2 == b**2 + c**2) || (b**2 == a**2 + c**2) || (c**2 == a**2 + b**2)) {
+                htmlResult = 'Triunghi dreptunghic';
+            }else {
+                htmlResult = 'Triunghi oarecare';
+            }
+            displayResult(htmlResult);
+
+        }
+
+        function displayResult(result){
+                document.getElementById('rezultat').innerHTML = "<span style = 'color: red;'>" + result + "<span>";      
+                
+         }
+
+         document.getElementById('check').onclick = () => {
+            let a  = parseInt(document.getElementById('a').value);
+            let b  = parseInt(document.getElementById('b').value);
+            let c  = parseInt(document.getElementById('c').value);
+            checkTriange(a , b , c)
+         }
+
+         let ziua = prompt('Dati ziua de la 1 la 7');
+
+         switch(ziua) {
+            case '1':
+                console.log("Luni");
+                break;
+            case '2':
+                console.log("marti");
+                break;
+            case '3':
+                console.log("Miercuri");
+                break;
+            case '4':
+                console.log("Joi");
+                break;
+            case '5':
+                console.log("Vineri");
+                break;
+            case '6':
+                console.log("Sambata");
+                break;
+            case '7':
+                console.log("Duminica");
+                break;
+            default:
+                console.log("Zi invalida");
+                break;  
+         }
+
+         switch(ziua) {
+            case '1':
+            case '2':
+            case '3':
+            case '4':
+            case '5':
+               console.log('Zi lucratoare');
+               break;
+            case 6:
+            case 7:      
+               console.log('Zi libera');
+               break;
+            default:
+                console.log("Zi invalida");s
+                break;  
+         }
+
+         let varsta = 10;
+         
+         (varsta >= 18) ? console.log("este major") : console.log("este minor");s
+        
+    </script>
+</body>
+</html>

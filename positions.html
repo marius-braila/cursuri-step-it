@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Positions</title>
+<style>
+   .container {
+    background-color: lightcoral;
+    padding: 20px;
+    width: 350px;
+    height: 2000px;
+    position: relative;
+   }
+
+   .first {
+    background-color: lightblue;
+    position: sticky;
+    top: 5px;
+   }
+   .second{
+    background-color: lightgoldenrodyellow;
+    /* position: relative;
+    left: 10px; */
+   }
+   .third{
+    background-color: lightgreen;
+    /* position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    z-index: -1; */
+   }
+   .fourth {
+    background-color: lightslategray;
+    /* position: absolute;
+    top: 10px;
+    z-index: -1; */
+   }
+
+   .container > div {
+    padding: 20px;
+    
+   }
+
+   .text {
+    border: 1px double #000;
+    width: 150px;
+    height: 100px;
+    overflow: scroll;
+   }
+</style>
+</head>
+<body>
+    <div class="container">
+        <!-- in combinatie cu top:0; pozitionarea sticky lipeste  -->
+       <div class="first">First</div>
+       <!-- pozityionarea relativa functioneaza impreuna cu top right left bottom care seteaza pozitia elementului relativ la parintele lui fara ai modifica dimensiunea initiala preluata de la parinte -->
+       <div class="second">Second</div>
+       <!-- merge ca prima si se raporteaza la marginea ferestrei browserului -->
+       <div class="third">Third</div>
+       <!-- Pozitinarea absoluta  -->
+       <div class="fourth">Fourth</div>
+       <div class="text">
+          Lorem ipsum dolor sit amet consectetur adipisicing
+           elit. Possimus accusantium illo rem libero quam
+            blanditiis, harum repellendus similique
+             praesentium, neque dolores. Eaque aperiam
+           eius doloremque officia vero eligendi illum dicta.
+       </div>
+    </div>  
+</body>
+</html>

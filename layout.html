@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<head>
+     <title>Layout</title>
+     <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="header">
+        <h3>Site-ul meu</h3>
+    </div>
+    <div class="menu">
+        <a href="#">Acasa</a>
+        <a href="#">Despre noi</a>
+        <a href="#">Produse</a>
+        <a href="#" class="selected">Contact</a>
+    </div>
+    <div class="content">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2767.460318373258!2d23.573294814700965!3d46.081801225283506!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x474ea86dfdfc81c1%3A0x84c1f2f3e5b55c23!2sSelgros%20Alba%20Iulia!5e0!3m2!1sro!2sro!4v1713200427361!5m2!1sro!2sro" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <div class="first">
+            <h5>Formular Contact</h5>
+            <form class="contactForm" enctype="multipart/form-data">
+               <label for="nume">Nume
+                  <input type="text" name="nume" placeholder="Introdu numele" required>
+               </label>
+               <label for="email">Email
+                <input type="email" name="email" placeholder="Introdu numele" required>
+             </label>
+
+
+            <label for="mobileType">Alege-ti tipul de telefon:<br>
+                <label for="mobileType">
+                    <input type="radio" name="mobileType" value="iOS">iOS
+                </label>
+                <label for="mobileType">
+                    <input type="radio" name="mobileType" value="android">Android
+                </label>
+            </label>
+            <label for="productInterest">
+                <input type="checkbox" name="productInterest" value="casti">Casti
+                <input type="checkbox" name="productInterest" value="huse">Huse
+            </label>
+
+
+             <label for="message">Mesaj
+                <textarea cols="60" rows="6"></textarea>
+             </label>
+            <label for="contactDetails">Vreau sa fiu contactat</label><br>
+            <select name="contactDetails">
+                <option value="0" selected>Selecteaza...</option>
+               <optgroup label="Zile Lucratoare">
+                <option value="1">Luni</option>
+                <option value="2">Marti</option>
+                <option value="3">Miercuri</option>
+                <option value="4">Joi</option>
+                <option value="5">Vineri</option>
+            </optgroup> 
+            <optgroup label="Weekend">
+                <option value="6">Sambata</option>
+                <option value="7">Duminica</option>
+            </optgroup>
+            </select>
+             <input type="submit" value="TRIMITE">
+           <label for="cv">CV<br></label>
+             <input type="file">
+            </form>
+        </div>
+        <div class="second">
+            Second
+        </div>
+    </div>
+</body>
+</html>

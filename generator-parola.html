@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generator-parola</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            font-family: Arial, Helvetica, sans-serif;
+            background: linear-gradient(to right, #4b6cb7, #182848);
+            color: #fff;
+        }
+ 
+        #container {
+            background: rgba(255, 255, 255, 0.1);
+            width: 350px;
+            padding: 20px;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            border-radius: 10px;
+        }
+ 
+        .options {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+ 
+        #send-btn{
+            background-color: #00aaff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px;
+            color: #fff;
+            margin-top: 20px;
+        }
+ 
+        #password-display{
+            background: rgba(0, 0, 0, 0.1);
+            padding: 10px 100px;
+            border-radius: 5px;
+        }
+ 
+        input[type ='checbox']:checked{
+            background-color: #00aaff;
+        }
+ 
+    </style>
+</head>
+<body>  
+    <div id="container">
+        <h1>Genrator de Parole</h1>
+        <div class="options">
+            <label for="password-length">Lungima parola</label>
+            <input type="number" id="password-length" value="12" min="4" max="32">
+            <label for="litere-mari"><input type="checkbox" id="litere-mari" checked>Include litere mari</label>
+            <label for="litere-mici"><input type="checkbox" id="litere-mici" checked>Include liter mici</label>
+            <label for="cifre"><input type="checkbox" id="cifre" checked>Include Cifre</label>
+            <label for="simboluri"><input type="checkbox" id="simboluri" checked>Include Simboluri</label>
+            <button id="send-btn" onclick="generatePassword()">Genereaza Parola</button>
+            <div id="password-display"></div>
+        </div>
+    </div>
+   
+    <script type="text/javascript">
+        const passwordDisplay = document.getElementById("password-display");
+        function generatePassword(){
+ 
+            const passwordLength = parseInt(document.getElementById("password-length").value);
+            const includeLitereMari = document.getElementById("litere-mari").checked;
+            const includeLitereMici = document.getElementById("litere-mici").checked;
+            const includeCifre = document.getElementById("cifre").checked;
+            const includeSimboluri = document.getElementById("simboluri").checked;
+           
+ 
+            const uppercaseChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            const lowercaseChars = 'abcdefghijklmnopqrstuvwxyz';
+            const numberChars = '0123456789';
+            const symbolChars = '!@#$%^&*()_+[]{}|;:,.<>?';
+ 
+           
+            let password = "";
+            let caracterePosibile = "";
+ 
+            if(includeLitereMari){
+                caracterePosibile += uppercaseChars;
+            }
+ 
+            if(includeLitereMici){
+                caracterePosibile += lowercaseChars;
+            }
+ 
+            if(includeCifre){
+                caracterePosibile += numberChars;
+            }
+ 
+            if(includeSimboluri){
+                caracterePosibile += symbolChars;
+            }
+           
+            if(caracterePosibile == "") {
+                alert("Selecteaza cel putin un tip de caracter");
+                return;
+            }
+ 
+            for(let i = 0; i < passwordLength; i++) {
+                const randomIndex = Math.floor(Math.random() * caracterePosibile.length);
+                password += caracterePosibile[randomIndex];              
+            }
+ 
+            passwordDisplay.innerHTML = password;
+ 
+        }
+       
+        passwordDisplay.addEventListener("click", () => writeClipboardText(passwordDisplay.innerHTML));
+ 
+        function writeClipboardText(text) {
+            try {
+                navigator.clipboard.writeText(text);
+                passwordDisplay.innerHTML = 'Parola copiata!';
+            } catch (error) {
+            console.error(error.message);
+            }
+        }
+       
+    </script>
+</body>
+</html>

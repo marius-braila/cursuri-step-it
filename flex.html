@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<head>
+    <title>Flex</title>
+    <style>
+
+.container {
+    padding: 10px;
+    border: 1px solid #999;
+    display: flex;
+    flex-direction: row;
+    /* row -default, aliniaza elementele pe orizontala de la stanga la dreapta */
+    /* row-reverse- aliniaza elementele pe orizontala de la dreapta la stanga */
+   flex-wrap: no-wrap;
+ 
+   /* no-wrap - varianta default pune elementele unul langa altul */
+  /* wrap - aliniaza elementele unul langa altul doar daca incap,daca nu cad pe urmatorul rand */
+  justify-content: flex-start;
+/* flex start -  varianta default, aliniaza elementele in stanga paginii, daca
+ramane loc, il pune pe tot in dreapta */
+
+/* flex-end - aliniaza elem in dr paginii,daca ramane loc il pune pe tot in stanga */
+
+/* center-  aliniaza toate elementele la mijloc si distribuie spatiul uniform stanga dreapta */
+
+/* space-between pune spatiu egal intre elemente */
+
+/* space around - pune spatiu egal in jurul elementelor */
+
+align-items: stretch;
+/* stretch- varianta default, aduce toate elementele la inaltimea elementului cel mai mare */
+
+
+}
+
+.container > div {
+    padding: 10px;
+    border: 1px solid #ccc;
+}
+
+/* Copii unui parinte cu display flex pot lua atributul  order ce poate schimba ordinea in randul copiilor din acel parinte */
+
+.box1 {
+  order: 1;
+}
+
+.box2 {
+   order: 2;
+}
+
+.box3 {
+  order: 3;
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="box1">
+            <h3>Box 1</h3>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
+        </div>
+        <div class="box2">
+            <h3>Box 2</h3>
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit..</p>
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
+        </div>
+        <div class="box3">
+            <h3>Box 3</h3>
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
+        </div>
+    </div>
+</body>
+</html>

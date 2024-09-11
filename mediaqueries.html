@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Medie Queries</title>
+  <style>
+    body {
+        background-color:#000;
+    }  
+
+    @media screen and (max-width: 600px) {
+        body {
+            background-color: #fff;
+        }
+    }
+   /* pot defini un comportament in css in functie de marimea ecranului */
+   /* componentele mediascreen:
+   - @ medie -  defineste comanda
+   -@screem - se aplica la nivel de display-pot pune print si se va aplica la printare
+   - conditie - executa stitul doar daca conditia din paranteza este adevarata
+  - and - leaga mai multe conditii, ! cand folosesc and intre doua condtii trebuie sa fie amandoua adevarate cas sa de aplice conditiile
+  
+ */
+   /* merge si height */
+    @media screen and (min-width: 500px) and (max-width:600px)  {
+        body {
+            background-color: red;
+        }
+    }
+       
+    @media screen and (orientation: landscape) {
+        body {
+            background-color: green;
+        }
+    }
+
+    @media screen and (aspect-ratio: 16/9) {
+        /* code */
+    }
+
+    @media screen and (hover:hover) {
+        /* code */
+    }
+
+    @media screen and (prefers-color-scheme: dark) {
+      /* code */
+    }
+    
+  </style>
+</head>
+<body>
+    
+</body>
+</html>

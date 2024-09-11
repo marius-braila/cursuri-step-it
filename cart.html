@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <table style="border: 1px solid #000;" id="productTable">
+        <thead>
+            <th style="width: 20%;">Nume produs</th>
+            <th style="width: 20%;">Pret (RON)</th>
+            <th style="width: 20%;">Cantitate</th>
+            <th style="width: 15%;">Total</th>
+            <th style="width: 15%;">Total TVA</th>
+            <th style="width: 10%;">Actiuni</th>
+        </thead>
+ 
+        <tbody>
+            <tr id="cartItem1">
+                <td>Produs 1</td>
+                <td align="center" class="cartItemPrice">200</td>
+                <td>
+                    <select class="qnt" onchange="calculTotal(this); calculTotalTVA(this);">
+                        <option value="0" selected>Selecteaza...</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                </td>
+                <td class="itemTotal" align="center" style="font-weight: bold;">
+                </td>
+                </td>
+                <td class="itemTotalTVA" align="center" style="font-weight: bold;">
+                </td>
+                <td>
+                    <button class="deleteBtn" onclick="deleteItem(this)">sterge</button>
+                </td>
+            </tr>
+            <tr id="cartItem2">
+                <td>Produs 2</td>
+                <td align="center" class="cartItemPrice">500</td>
+                <td>
+                    <select class="qnt" onchange="calculTotal(this); calculTotalTVA(this);">
+                        <option value="0" selected>Selecteaza...</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                </td>
+                <td class="itemTotal" align="center" style="font-weight: bold;">
+                </td>
+                 </td>
+                <td class="itemTotalTVA" align="center" style="font-weight: bold;">
+                </td>
+                <td>
+                    <button class="deleteBtn" onclick="deleteItem(this)">sterge</button>
+                </td>
+            </tr>
+            <tr id="cartItem3">
+                <td>Produs 3</td>
+                <td align="center" class="cartItemPrice">240</td>
+                <td>
+                    <select class="qnt" onchange="calculTotal(this); calculTotalTVA(this);">
+                        <option value="0" selected>Selecteaza...</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                </td>
+                <td class="itemTotal" align="center" style="font-weight: bold;">
+                 </td>
+                </td>
+                <td class="itemTotalTVA" align="center" style="font-weight: bold;">
+                </td>
+                <td>
+                    <button class="deleteBtn" onclick="deleteItem(this)">sterge</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div>
+        <p>Total Cos: <span id="total">0</span>RON</p>
+        <p>Transport: <span id="afisareTransport">0</span>RON</p>
+        <p>Total Cos cu transport: <span id="totalCuTrasnport">0</span>RON</p>
+        <p>Total Cos cu TVA: <span id="totalTVA">0</span>RON</p>
+    </div>
+    <button onclick="addProduct()">Adauga Produs in cos</button>
+
+    <script type="text/javascript">
+        function calculTotal(elem) {
+            // apeland functia cu parametrul this trimitem tot elementul html in parametrul functiei numit elem
+            // salvez in variabile qnt valoarea selectata a elementului pe care am dat change
+            let qnt = parseInt(elem.value);
+            
+            let price  = parseInt(elem.parentNode.previousElementSibling.innerHTML)
+            // placand de la elementul selectat,prin functia "parentNode"
+            // ajung la parintele de tip "td" al elementului.
+
+            // aplicand functia previousElementSibling ajung la elementul de dinaintea parintelui elementului selectat
+
+            // in variabila total calculez cantitare * pret 
+            let total =  qnt * price;
+
+            elem.parentNode.nextElementSibling.innerHTML = total;
+
+            calculCos();
+           
+
+        }
+
+        function calculTotalTVA(elem) {
+            let qnt = parseInt(elem.value);
+            
+            let price  = parseInt(elem.parentNode.previousElementSibling.innerHTML)
+
+            let total =  qnt * price;
+
+            let cotaTVA = 19/100;
+            let totalCosTVA = total + (total * cotaTVA);
+
+            elem.parentNode.nextElementSibling.nextElementSibling.innerHTML = totalCosTVA;
+           
+
+        }
+
+        function calculCos() {
+            let elems = document.getElementsByClassName('itemTotal');
+
+            let sum = 0;
+
+            for(let i = 0; i < elems.length; i++) {
+                
+                let value = parseInt(elems[i].innerHTML)
+                
+                if(value) {
+                    sum += value;
+                }
+            }
+
+            document.getElementById('total').innerHTML = sum;
+            
+            calculTransport();
+            calculTotalCuTransport();
+            calculCosTVA();
+        }
+
+        
+
+        
+
+        function calculTransport(){
+            let totalCos = parseInt(document.getElementById('total').innerHTML);
+            let pretTransport = 0;
+
+           if(totalCos <= 300){
+                pretTransport = parseInt(totalCos * (50/100));
+                document.getElementById('afisareTransport').innerHTML = pretTransport;
+            }else if(totalCos > 300 && totalCos <= 500){
+                pretTransport = parseInt(totalCos * (30/100));
+                document.getElementById('afisareTransport').innerHTML = pretTransport;
+            }else if(totalCos > 500 && totalCos <= 800){
+                pretTransport = parseInt(totalCos * (10/100));
+                document.getElementById('afisareTransport').innerHTML = pretTransport;
+            }else{
+                pretTransport = 0
+                document.getElementById('afisareTransport').innerHTML = pretTransport;
+            }
+
+        }
+
+        function calculTotalCuTransport()  {
+            let totalCos = parseInt(document.getElementById('total').innerHTML);
+            let valoareTransport = parseInt(document.getElementById('afisareTransport').innerHTML);
+            document.getElementById('totalCuTrasnport').innerHTML = totalCos + valoareTransport;
+        
+        }
+
+        function calculCosTVA(){
+         let totalCos = parseInt(document.getElementById('totalCuTrasnport').innerHTML);
+         let cotaTVA = 19/100;
+         let totalCosTVA = totalCos + (totalCos * cotaTVA);
+         document.getElementById('totalTVA').innerHTML = totalCosTVA ;
+        }
+
+    
+
+        function deleteItem(btn) {
+            btn.parentNode.parentNode.remove();
+            calculCos();
+        }
+
+        function addProduct(){
+            // selectez tabelul 
+            let tableParent = document.getElementById('productTable');
+            // al doilea copil al lui table este tbody ,  ceea ce inseamna ca este copilul cu indexul 1(thead are index 0)
+            let tBody = tableParent.children[1];
+            // creez un nou element html dinamic de tip <tr>
+            let newTR = document.createElement('tr');
+            // adaug elementul nou creat de tip TR la body
+            tBody.append(newTR);
+
+            for(let i = 0; i < 6; i++){
+                // am nevoie de 5 td-uri pe care sa le adaug la TR
+                let newTD = document.createElement('td');
+                newTR.append(newTD);
+            }
+
+          //identific copii si populez date prin prompt    
+            newTR.children[0].innerHTML = prompt("Dati numele produsului:");
+            newTR.children[1].innerHTML = prompt("Dati pretul produsului:");
+          //adaug clasa si stilul pe copilul cu index 1(pret)
+            newTR.children[1].classList.add("cartItemPrice");
+            newTR.children[1].setAttribute('align', 'center');
+          //identific un element de tip seleect existent si il clonez cu functia cloneNode
+            let selectElement = document.getElementsByClassName('qnt')[0];
+            let newSelectElement = selectElement.cloneNode(true);
+            let quantity = parseInt(prompt("Introduce-ti cantitatea:"));
+            newSelectElement.value = quantity;
+
+            newTR.children[2].append(newSelectElement);
+            calculTotal(newSelectElement);
+            calculTotalTVA(newSelectElement);
+
+            newTR.children[3].classList.add("itemTotal");
+            newTR.children[3].setAttribute('align', 'center');
+            newTR.children[3].style = "font-weight: bold";
+            calculCos();
+
+            newTR.children[4].classList.add("itemTotalTVA");
+            newTR.children[4].setAttribute('align', 'center');
+            newTR.children[4].style = "font-weight: bold";
+
+            let removeBtn = document.getElementsByClassName('deleteBtn')[0];
+            let newRemoveBtn = removeBtn.cloneNode(true);
+
+            newTR.children[5].append(newRemoveBtn);
+        }
+
+
+        
+
+    </script>
+
+
+</body>
+</html>

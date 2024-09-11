@@ -1,0 +1,67 @@
+body {
+    font-family: Arial, Helvetica, sans-serif
+}
+
+.header {
+   background-color: #cccccc;
+   height: 40px;
+}
+
+.header > h3 {
+    text-align: center;
+    padding-top: 5px;
+    font-size: 20px;
+    color: #0000ff;
+}
+
+.menu {
+    background-color: #000000;
+    padding: 10px 0;
+}
+
+.menu a {
+   color: #ffffff;
+   text-decoration: none;
+   padding: 0% 10% ;
+}
+
+.menu a.selected , .menu a:hover{
+    color: yellow;
+}
+
+
+.content {
+    height: 500px;
+    background-color: #dddddd;
+}
+
+.first {
+    float: left;
+    width: 60%;
+    background-color: #ffffff;
+    padding: 10px 0;
+}
+
+.second {
+    float: left;
+    width: 40%;
+    background-color: #CCCCCC;
+    padding: 10px 0;
+}  
+
+.bordered {
+    border: 1px solid #000;
+}
+
+.contactForm label {
+  width: 100%;
+  display: block;
+  margin-bottom: 15px;
+  font-size: 12px;
+}
+
+
+ .contactForm input[type="text"] .contactForm input[type="email"] {
+    width: 300px;
+} 
+

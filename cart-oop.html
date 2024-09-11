@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart OOP</title>
+    <style type="text/css">
+        .container{
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .product, .cart {
+            border:  1px solid #ccc;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .cart ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .cart li {
+            display: flex;
+            justify-content: space-between;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Shopping cart</h1>
+        <div class="products">
+            <div class="product" data-id="1" data-name="Product 1" data-price="10">
+                <h2>Product 1</h2>
+                <p>10$</p>
+                <button class="add-to-cart">Add to cart</button>
+            </div>
+            <div class="product" data-id="2" data-name="Product 2" data-price="12">
+                <h2>Product 2</h2>
+                <p>12$</p>
+                <button class="add-to-cart">Add to cart</button>
+            </div>
+        </div>
+        <h1>Cart</h1>
+        <div class="cart">
+            <ul id="cart-items"></ul>
+            <p>Total <span id="total-price">0</span> $</p>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        class Item {
+            constructor(id, name){
+                this.id = id;
+                this.name = name;
+            }
+        }
+
+        // initializeaza this.id si this.name folosindu-se de constructorul din clasa de baza Item
+        class Product extends Item {
+            constructor(id, name, price) {
+                super(id, name);
+                this.price = price;
+            }
+        }
+
+        // in constructor, product stim ca va fi un obiect ce are id si nume.
+        // astfel intializam in constructorul din clasa de baza Item this.id si this.name cu id-ul si numele produsului
+        class CartItem extends Item {
+            constructor(product, quantity) {
+                super(product.id, product.name);
+                this.product = product;
+                this.quantity = quantity;
+            } 
+
+            // metoda care calculeaza pretul in functie de cantitate
+            getTotalPrice() {
+                return this.product.price * this.quantity;
+            }
+        }
+
+        class ShoppingCart {
+            // this.items este initaliat ca un array.
+            // in el vom stoca toate produsele din cos (e un array de obiecte din clasa CartItems)
+            constructor() {
+                this.items = [];
+            }
+
+            // metoda care adauga un produs in cos
+            addItem(product) {
+                // verific daca produsul pe care vreau sa il adaug, exista deja
+                const cartItem = this.items.find(item => item.product.id === product.id);
+
+                // daca exista, actualizez doar cantitatea (un atribut al clasei CartItem)
+                if(cartItem) {
+                    cartItem.quantity++;
+                } else {
+                    // altfel, ceez un nou CartItem pe baza produsului primit ca parametru si cantitatea default 1
+                    this.items.push(new CartItem(product, 1));
+                }
+
+                // apelez functia de randare a clasei
+                this.render();
+            }
+
+            // functie recursiva (se apleaza pe ea insasi) care calueaza valoarea totata a cosului
+            // adunand preturile x cantitate totutor produselor aflate in cos
+            getTotalPrice() {
+                return this.items.reduce((total, item) => total + item.getTotalPrice(), 0);
+            }
+
+            render(){
+                // obtine elementele de html de care are nevoie
+                const cartItemsElement = document.getElementById('cart-items');
+                const totalPriceElement = document.getElementById('total-price');
+             
+                // se asigura ca cosul este gol pt a fi populat de fiecare data cu produsele actuale
+                cartItemsElement.innerHTML = '';
+
+                // iteram prin toate elementele de tip CartItems (aflate in acest moment in cos).
+                this.items.forEach(item => {
+                        // creaza un element de tip li    
+                        const li = document.createElement('li');
+
+                        // adauga in li, nume produs, pret si cantitate
+                        li.textContent = `${item.product.name}, ${item.product.price} x ${item.quantity}`;
+                        
+                        // adauga li-ul la ul.
+                        cartItemsElement.appendChild(li);
+                    }
+                );
+
+                // calculeaza totatul cosului si il afiseaza in html
+                totalPriceElement.textContent = this.getTotalPrice();
+            }
+        }
+
+        // crez o constanta obiect de tip Shopping cart
+        const cart = new ShoppingCart();
+
+        console.log(cart);  //false
+
+        // iterez prin toate butoanele de tip adauga in cos
+        document.querySelectorAll('.add-to-cart').forEach(button => {
+            // daca pe unuul din ele s-a dat click    
+            button.addEventListener('click', (event) => {
+                    // iau elementul de tip product si pe baza atributelor de tip data-somethig iau valorile in constante 
+                    const productElement = event.target.closest('.product');
+                
+                    const productId = productElement.getAttribute('data-id');
+                    const productName = productElement.getAttribute('data-name');
+                    const productPrice = productElement.getAttribute('data-price');
+
+                    // crrez un  obiect de tip produc pe baza datelor luate de la html
+                    const clickedProduct = new Product(productId, productName, productPrice);
+
+                    // adaug acest ptodus la cos prin functia addItem a claseo ShoppingCart.
+                    cart.addItem(clickedProduct);
+            });
+        });
+    </script>
+</body>
+</html>

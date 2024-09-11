@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChatBOT</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f0f0f0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .chatContainer{
+            width: 500px;
+            background-color: #fff;
+            display: flex;
+            flex-direction: column;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .chatBox{
+            display: flex;
+            flex: 1;
+            flex-direction: column;
+            padding: 25px;
+            max-height: 500px;
+            overflow-y: auto;
+        }
+
+        .message {
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 5px;
+            font-size: 15px;
+        }
+
+        .bot{
+            align-self: flex-start;
+            background-color: #ececec;
+        }
+
+        .user {
+            align-self: flex-end;
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        .waiting {
+            align-self: flex-end;
+            color: #727272;
+            font-size: 15px;
+        }
+
+
+        #chatInput {
+            padding: 10px;
+            outline: none;
+            border: none;
+            border-top:1px solid #ddd ;
+            width: calc(100% - 70px);
+        }
+
+        #chatButton {
+            width: 70px;
+            background-color: #007bff;
+            color:#fff;
+            outline: none;
+            border: none;
+            cursor: pointer;
+            padding: 5px;
+            border-radius: 3px;
+        }
+
+        #chatButton:hover {
+            opacity: 0.8;
+        }
+   
+
+     </style>
+</head>
+<body>
+    <div class="chatContainer">
+        <div class="chatBox">
+            <div class="message bot">Bun venit!</div>
+        </div>
+        <input type="text" id="chatInput" placeholder="Introduceti mesaj:">
+        <button id="chatButton">Trimite</button>
+    </div>
+
+    <script type="text/javascript">
+        let chatBox = document.getElementsByClassName('chatBox')[0];
+        let chatInput = document.getElementById('chatInput');
+        let chatButton = document.getElementById('chatButton');
+
+        function sendMessage(){
+            if(chatInput.value == ''){
+                return false;
+            }
+            displayMsg(chatInput.value , 'user');
+            getResponse(chatInput.value);
+            chatInput.value = '';
+            waitingElem = document.querySelector('.waiting');
+            if(waitingElem){
+                waitingElem.remove();
+            }
+        }
+
+        function predefinedResponses(){
+            return {
+                "buna": "Buna eu sunt asistentul tau.",
+                "cursuri": "Cursurile noastre sunt HTML CSS JS",
+                "program":"Seara de la 7 la 9",
+                "examen": "verifica pe <a href='https://itstep.ro' target='_blank'>site ul oficial</a>",
+                "costuri": "Te invitam la prezentare",
+                "multumesc": "Cu placere, ne vedem la curs"
+            };
+        }
+
+        function getResponse(msg){
+            let raspuns = '';
+            msg = msg.toLowerCase();
+            raspuns = "scuze nu inteleg intrebarea";
+            const responses = predefinedResponses();
+            for(let key in responses){
+                if(msg.includes(key)){
+                    raspuns = responses[key];
+                    break;
+                }
+            }
+            
+            displayMsg(raspuns , 'bot');
+
+        }
+
+        function displayMsg(msg , type){
+            let newMsg = document.createElement('div');
+            newMsg.className = 'message ' + type;
+            newMsg.innerHTML = msg ;
+            chatBox.appendChild(newMsg);
+        }
+
+
+        chatInput.addEventListener('input', ()=> {
+            if(!document.querySelector('.waiting')){
+                displayMsg('Typing...' , 'waiting');
+            }
+        });
+
+
+        chatInput.addEventListener('keypress', (e)=> {
+            if(e.key == 'Enter'){
+                sendMessage();
+            }
+        });
+
+        chatButton.addEventListener('click',() => {
+            sendMessage();
+        } )
+    </script>
+    
+</body>
+</html>

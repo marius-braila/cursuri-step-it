@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            width: 250px;
+            height: 100px;
+            background-color: green;
+            border: 1px solid #000;
+            color: #fff;
+        }
+        #animations {
+            animation-name: schimbaCuloarea2;
+            animation-duration: 5s;
+            animation-iteration-count:infinite ;
+            animation-direction:alternate-reverse ;
+        }
+
+        @keyframes schimbaCuloarea {
+            from {background-color: green;}
+            to{background-color: red;}
+        }
+
+        @keyframes schimbaCuloarea2 {
+           0% {background-color: green; color: red;}
+           25%{background-color: red; color: green;}
+           50%{background-color: blue; color: orange;} 
+           75%{background-color: plum; color: aquamarine;}
+           100%{background-color: yellow; color: blue;}
+        }
+
+        #rotation:hover {
+            /* transform: rotate(-10deg);
+            transform: scale(2,2); */
+            transform: translate(100px, 100px);
+        }
+    </style>
+</head>
+<body>
+    <h2>Animations</h2>
+    <div id="animations">Acesta este un div</div>
+    <h2>Rotation</h2>
+    <div id="rotation">Acesta este un div</div>
+</body>
+</html>

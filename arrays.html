@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .redColor {
+            color:red;
+        }
+
+        .checked {
+            text-decoration: line-through;
+        }
+
+    </style>
+</head>
+<body>
+    <p id="fructe"></p>
+
+    <div class="redColor">A</div>
+    <h1 class="redColor">B</h1>
+    <p class="redColor">C</p>
+    <p class="redColor">D</p>
+
+    <div id="todo">
+    </div>
+
+    <p><span id="total">0</span> produse in cos</p>
+
+    <script type="text/javascript">
+
+        const fructe = ["Mare", "Pere", "Cirese"];
+
+        console.log(fructe);
+        console.log(fructe[1]); // Pere este pe pozitia 1, Mere pe 0
+        fructe[3] = "Prune";
+
+        console.log(fructe);
+
+        // document.getElementById('fructe').innerHTML = fructe;
+
+        console.log(fructe.length);
+
+        fructe[fructe.length] = "Banane";
+        console.log(fructe);
+
+        fructe.push('Portocale');
+        console.log(fructe);
+
+        fructe.sort();
+        console.log(fructe);
+        console.log(fructe[1]);
+
+        fructe.reverse();
+        console.log(fructe);
+
+        const note = new Array(6, 5, 9, 5, 8, 10, 4, 10, 1, 2);
+        console.clear();
+        console.log(note);
+       
+        note.sort();
+        console.log(note);
+
+        note.reverse();
+        console.log(note);
+
+        const student = new Array("Popescu", "Ion", 10, true);
+        console.log(student); 
+
+        for(let i = 0; i < 10; i++) {
+            console.log(i);
+        }
+
+        for(let i=10; i > 1; i--) {
+            console.log(i);
+        } 
+
+        console.clear();
+        console.log(fructe);
+
+        for (let i=0; i < fructe.length; i++) {
+            console.log(fructe[i]);   
+        }
+
+        let lista = "<ul>";
+
+            for(let i=0; i<fructe.length; i++) {
+                lista += "<li>" + fructe[i] + "</li>";
+            }
+
+        lista += "</ul>";
+
+        document.getElementById("fructe").innerHTML = lista;
+
+        console.log(lista);
+
+       red =  document.getElementsByClassName('redColor')[0].innerHTML = "Test";
+
+        console.log(red);
+
+        console.clear();
+
+        let divs = "";
+        let checkbox = "<input onclick='check(this)' type='checkbox' />";
+
+        for (let i=0; i<fructe.length; i++) {
+            divs += "<div>" + checkbox + fructe[i] + "</div>";
+        }
+
+        document.getElementById('todo').innerHTML = divs;
+
+        function check(elemPeCareDauClick) {
+        //    elemPeCareDauClick.parentElement.style = "text-decoration:line-through;";
+
+            if (elemPeCareDauClick.parentElement.classList.contains("checked")) {
+                elemPeCareDauClick.parentElement.classList.remove("checked");
+            } else {
+                elemPeCareDauClick.parentElement.classList.add('checked');
+            }
+        }
+
+
+    </script>
+
+</body>
+</html>
